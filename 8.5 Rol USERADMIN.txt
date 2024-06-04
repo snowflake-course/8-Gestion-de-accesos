@@ -1,0 +1,10 @@
+-- USERADMIN --
+
+--- Crear usuario
+CREATE OR REPLACE USER antonio PASSWORD = '123' 
+DEFAULT_ROLE = ventas_admin
+MUST_CHANGE_PASSWORD = TRUE;
+
+GRANT ROLE ventas_admin TO USER antonio;
+
+SHOW ROLES;

@@ -1,0 +1,22 @@
+-- SYSADMIN --
+
+-- Crear Data Warehouse X-SMALL
+create warehouse public_wh with
+warehouse_size='X-SMALL'
+auto_suspend=300 
+auto_resume= true
+
+-- Dar permisos al rol public
+grant usage on warehouse public_wh 
+to role public
+
+-- Crear BBDD accesible para todos
+create database common_db;
+grant usage on database common_db to role public
+
+-- Crear BBDD Ventas para rol administrador ventas (ventas_admin) y darles la propiedad
+create database sales_database;
+grant ownership on database sales_database to role ventas_admin;
+grant ownership on schema sales_database.public to role ventas_admin
+
+SHOW DATABASES;

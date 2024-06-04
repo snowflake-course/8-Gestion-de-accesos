@@ -1,0 +1,21 @@
+-- Rol SECURITYADMIN ---- Creación y gestión de roles y usuarios --
+
+create role ventas_admin;
+create role ventas_users;
+
+-- Crear jerarquía
+grant role ventas_users to role ventas_admin;
+
+-- Asignar roles personalizados a SYSADMIN como buena práctica
+grant role ventas_admin to role SYSADMIN;
+
+
+-- Crear usuario ventas
+CREATE USER diego PASSWORD = '123' DEFAULT_ROLE =  ventas_users 
+MUST_CHANGE_PASSWORD = TRUE;
+GRANT ROLE ventas_users TO USER diego;
+
+-- Crear usuarios ventas administrador
+CREATE USER oliver_admin PASSWORD = '123' DEFAULT_ROLE =  ventas_admin
+MUST_CHANGE_PASSWORD = TRUE;
+GRANT ROLE ventas_admin TO USER  oliver_admin;
